@@ -1,0 +1,68 @@
+---
+alwaysApply: true
+description: WonderKids English build rules and conventions for development across web, api, and packages
+---
+
+# WonderKids English – Build Rules
+
+**Applies to:**
+- `apps/web/**`
+- `apps/api/**` 
+- `packages/**`
+
+## Goals
+- Ship a playful, accessible English‑learning site with high retention
+- Use latest library versions; **do not** pin versions unless security requires
+- Keep PRs atomic (<300 lines diff when possible). Write tests for core logic
+
+## Style Guide
+
+**Language:** TypeScript  
+**Formatting:** Prettier + ESLint (strict) + import sorting  
+**Tailwind:** Yes  
+**UI:** shadcn/ui components; avoid custom one‑off CSS unless necessary  
+**State:** Keep server state in TanStack Query; UI state in lightweight store (Zustand)  
+**Forms:** react-hook-form + Zod resolver  
+**Accessibility:** Labels, roles, keyboard nav, focus rings, motion‑reduced fallback  
+**i18n:** next-intl; all strings must be keys with English/Vietnamese bundles  
+**Tests:** Vitest/Jest for units, Playwright for critical flows  
+**Performance:** Image optimization, code‑splitting, cache headers, RSC where sensible  
+
+## Constraints
+- Do not store secrets in repo. Use environment variables
+- Do not introduce server sessions in Next.js; prefer stateless JWT from Supabase
+- Prefer serverless storage links via Supabase signed URLs
+- Keep SQL migrations idempotent; use Supabase migrations if available
+
+## Conventions
+
+### Commit Messages
+Format: `"type(scope): summary"` (feat, fix, chore, refactor, docs, test)
+
+### Folder Structure
+**Web:**
+- `app/(marketing)/`, `app/(app)/dashboard`, `app/(app)/course/[slug]`
+- `components/ui/`, `components/app/`, `lib/`, `hooks/`, `styles/`
+
+**API:**
+- `src/modules/{content,lessons,attempts,progress,gamification,tutor,billing}`
+- `src/common/{guards,dto,filters}`
+
+### Naming Conventions
+- **Components:** PascalCase
+- **Hooks:** useCamelCase  
+- **Files:** kebab-case
+
+### Environment Variables
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY` (api only)
+- `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` (api)
+- `NEXT_PUBLIC_APP_URL`, `API_URL`
+
+## Review Checklist
+- [ ] Types & null safety
+- [ ] RLS respected; no leaking data
+- [ ] Accessibility & keyboard nav
+- [ ] i18n keys added
+- [ ] Tests & stories updated
