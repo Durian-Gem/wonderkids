@@ -14,6 +14,7 @@ description: WonderKids English build rules and conventions for development acro
 - Ship a playful, accessible English‑learning site with high retention
 - Use latest library versions; **do not** pin versions unless security requires
 - Keep PRs atomic (<300 lines diff when possible). Write tests for core logic
+- Document sprint deliverables and maintain comprehensive API testing
 
 ## Style Guide
 
@@ -60,9 +61,53 @@ Format: `"type(scope): summary"` (feat, fix, chore, refactor, docs, test)
 - `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` (api)
 - `NEXT_PUBLIC_APP_URL`, `API_URL`
 
+## Sprint Documentation
+
+### Required Documentation
+- **Sprint Completion Report**: `docs/sprints/sprintN-deliverables/SPRINTN-COMPLETION.md`
+- **API Testing Guide**: `docs/sprints/sprintN-deliverables/API-TESTING-GUIDE.md`
+- **Architecture Updates**: Document any major changes to project structure
+- **Known Issues**: Track technical debt and limitations
+
+### Documentation Standards
+- Use clear headings and status indicators (✅ ❌ 🧪)
+- Include test results with actual curl commands
+- Document all API endpoints with expected responses
+- Maintain project context for future sprints
+
+## API Testing Requirements
+
+### Testing Standards
+- **Public Endpoints**: Must be tested and documented with curl examples
+- **Protected Endpoints**: Require authentication flow documentation
+- **Error Cases**: Test 401, 403, 404, 400 responses
+- **RLS Policies**: Verify Row Level Security enforcement
+
+### Testing Checklist per Sprint
+- [ ] All new endpoints tested with actual requests
+- [ ] Authentication flows verified
+- [ ] Error handling validated
+- [ ] Security policies enforced (RLS)
+- [ ] Response schemas documented
+- [ ] Integration with frontend verified
+
+### Test Documentation Format
+```bash
+# Test Command
+curl -X METHOD http://localhost:4000/endpoint
+
+# Expected Response (with status)
+✅ 200: { "data": ..., "success": true }
+❌ 404: { "message": "Not found" }
+🧪 Pending: Requires authentication setup
+```
+
 ## Review Checklist
 - [ ] Types & null safety
 - [ ] RLS respected; no leaking data
 - [ ] Accessibility & keyboard nav
 - [ ] i18n keys added
 - [ ] Tests & stories updated
+- [ ] **Sprint documentation completed**
+- [ ] **All API endpoints tested and documented**
+- [ ] **Security policies verified**

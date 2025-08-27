@@ -1,0 +1,109 @@
+{
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi",
+    "success": "Thành công!",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "create": "Tạo",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "home": "Trang chủ",
+    "dashboard": "Bảng điều khiển",
+    "signIn": "Đăng nhập",
+    "signUp": "Đăng ký",
+    "signOut": "Đăng xuất"
+  },
+  "navigation": {
+    "home": "Trang chủ",
+    "courses": "Khóa học",
+    "dashboard": "Bảng điều khiển",
+    "family": "Gia đình",
+    "pricing": "Bảng giá",
+    "about": "Về chúng tôi",
+    "contact": "Liên hệ"
+  },
+  "auth": {
+    "signInTitle": "Chào mừng trở lại",
+    "signUpTitle": "Tạo tài khoản",
+    "email": "Địa chỉ email",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "signInWithEmail": "Đăng nhập bằng email",
+    "signUpWithEmail": "Tạo tài khoản",
+    "magicLink": "Gửi liên kết đăng nhập",
+    "alreadyHaveAccount": "Đã có tài khoản?",
+    "dontHaveAccount": "Chưa có tài khoản?",
+    "forgotPassword": "Quên mật khẩu?",
+    "checkYourEmail": "Kiểm tra email để nhận liên kết đăng nhập"
+  },
+  "family": {
+    "title": "Hồ sơ gia đình",
+    "addChild": "Thêm con",
+    "editChild": "Chỉnh sửa thông tin con",
+    "deleteChild": "Xóa hồ sơ con",
+    "childName": "Tên con",
+    "birthYear": "Năm sinh",
+    "locale": "Ngôn ngữ",
+    "avatar": "Ảnh đại diện",
+    "noChildren": "Chưa thêm con nào",
+    "addFirstChild": "Thêm con đầu tiên để bắt đầu"
+  },
+  "course": {
+    "title": "Khóa học",
+    "units": "Đơn vị",
+    "lessons": "Bài học",
+    "startLesson": "Bắt đầu bài học",
+    "continueLesson": "Tiếp tục",
+    "completed": "Đã hoàn thành",
+    "locked": "Đã khóa",
+    "estimatedTime": "Ước tính {minutes} phút"
+  },
+  "dashboard": {
+    "welcome": "Chào mừng trở lại, {name}!",
+    "quickActions": "Hành động nhanh",
+    "recentProgress": "Tiến độ gần đây",
+    "minutesLearned": "Phút học tuần này",
+    "lessonsCompleted": "Bài học đã hoàn thành",
+    "streakDays": "Chuỗi ngày học"
+  },
+  "marketing": {
+    "hero": {
+      "title": "Học tiếng Anh vui nhộn cho trẻ em",
+      "subtitle": "Bài học tương tác, trò chơi và gia sư AI được thiết kế cho trẻ em từ 5-12 tuổi",
+      "cta": "Bắt đầu miễn phí"
+    },
+    "features": {
+      "title": "Tại sao các gia đình yêu thích WonderKids",
+      "interactive": {
+        "title": "Bài học tương tác",
+        "description": "Hoạt động hấp dẫn giữ cho trẻ có động lực"
+      },
+      "progress": {
+        "title": "Theo dõi tiến độ",
+        "description": "Xem chính xác những gì con bạn đang học"
+      },
+      "safe": {
+        "title": "An toàn & Bảo mật",
+        "description": "Môi trường an toàn cho trẻ em với kiểm soát của phụ huynh"
+      }
+    },
+    "pricing": {
+      "title": "Giá cả đơn giản, thân thiện với gia đình",
+      "familyPlan": {
+        "title": "Gói gia đình",
+        "price": "19$/tháng",
+        "features": [
+          "Tối đa 3 con",
+          "Bao gồm tất cả khóa học",
+          "Theo dõi tiến độ",
+          "Truy cập gia sư AI",
+          "Hủy bất cứ lúc nào"
+        ],
+        "cta": "Dùng thử miễn phí"
+      }
+    }
+  }
+}
