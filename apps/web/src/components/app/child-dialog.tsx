@@ -1,14 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { Button } from '@repo/ui/button';
-import { Input } from '@repo/ui/input';
-import { Label } from '@/src/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo/ui/card';
 import type { Child, CreateChild, UpdateChild } from '@repo/types';
+import { Button } from '@repo/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo/ui/card';
+import { Input } from '@repo/ui/input';
+import { useEffect,useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+import { Label } from '@/src/components/ui/label';
 
 const childSchema = z.object({
   display_name: z.string().min(1, 'Name is required'),
@@ -54,10 +55,27 @@ export function ChildDialog({ child, isOpen, onClose, onSave }: ChildDialogProps
     }
   }, [child, form]);
 
+  // Reset form when dialog opens for creating a new child
+  useEffect(() => {
+    if (isOpen && !child) {
+      form.reset({
+        display_name: '',
+        birth_year: undefined,
+        locale: 'en',
+      });
+    }
+  }, [isOpen, child, form]);
+
   const onSubmit = async (data: ChildFormData) => {
     setLoading(true);
     try {
       await onSave(data);
+      // Reset form after successful save
+      form.reset({
+        display_name: '',
+        birth_year: undefined,
+        locale: 'en',
+      });
       onClose();
     } catch (error) {
       console.error('Failed to save child:', error);
@@ -74,16 +92,16 @@ export function ChildDialog({ child, isOpen, onClose, onSave }: ChildDialogProps
         <CardHeader>
           <CardTitle>{isEdit ? 'Edit Child' : 'Add Child'}</CardTitle>
           <CardDescription>
-            {isEdit ? 'Update your child\'s information' : 'Create a new child profile'}
+            {isEdit ? 'Update your child&apos;s information' : 'Create a new child profile'}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="display_name">Child's Name</Label>
+              <Label htmlFor="display_name">Child&apos;s Name</Label>
               <Input
                 id="display_name"
-                placeholder="Enter child's name"
+                placeholder="Enter child&apos;s name"
                 {...form.register('display_name')}
               />
               {form.formState.errors.display_name && (

@@ -5,24 +5,22 @@ export default createMiddleware({
   locales: ['en', 'vi'],
 
   // Used when no locale matches
-  defaultLocale: 'en',
-
-  // Only run middleware on routes that need internationalization
-  // Skip API routes and static files
-  pathnames: {
-    // If all locales use the same pathname, a
-    // single external pathname can be provided.
-    '/': '/',
-    '/dashboard': '/dashboard',
-    '/family': '/family',
-    '/course/[slug]': '/course/[slug]',
-    '/pricing': '/pricing',
-    '/auth/sign-in': '/auth/sign-in',
-    '/auth/sign-up': '/auth/sign-up',
-  }
+  defaultLocale: 'en'
 });
 
 export const config = {
   // Match only internationalized pathnames
-  matcher: ['/', '/(vi|en)/:path*']
+  // Skip API routes, Next.js internals and files without extensions
+  matcher: [
+    // Enable a redirect to a matching locale at the root
+    '/',
+
+    // Set a cookie to remember the previous locale for
+    // all requests that have a locale prefix
+    '/(vi|en)/:path*',
+
+    // Enable redirects that add missing locales
+    // (e.g. `/pathnames` -> `/en/pathnames`)
+    '/((?!_next|_vercel|.*\\..*).*)' 
+  ]
 };

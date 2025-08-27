@@ -66,19 +66,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         if (error) throw error;
 
         if (authData.user) {
-          // Create guardian profile
-          const { error: profileError } = await supabase
-            .from('profiles')
-            .upsert({
-              user_id: authData.user.id,
-              role: 'guardian',
-              locale: 'en',
-            });
-
-          if (profileError) {
-            console.error('Profile creation error:', profileError);
-          }
-
+          // Profile will be created automatically by database trigger
           router.push('/dashboard');
         }
       } else {
