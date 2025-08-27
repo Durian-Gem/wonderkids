@@ -1,0 +1,219 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/src/lib/auth-context';
+import { Button } from '@repo/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo/ui/card';
+import { ChildDialog } from '@/src/components/app/child-dialog';
+import { apiClient } from '@/src/lib/api';
+import type { Child, CreateChild, UpdateChild } from '@repo/types';
+
+export default function FamilyPage() {
+  const { session } = useAuth();
+  const [children, setChildren] = useState<Child[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [editingChild, setEditingChild] = useState<Child | undefined>();
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (session?.access_token) {
+      fetchChildren();
+    }
+  }, [session]);
+
+  const fetchChildren = async () => {
+    if (!session?.access_token) return;
+    
+    try {
+      const response = await apiClient.getChildren(session.access_token);
+      setChildren(response.data);
+    } catch (error) {
+      console.error('Failed to fetch children:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCreateChild = async (data: CreateChild) => {
+    if (!session?.access_token) return;
+    
+    try {
+      await apiClient.createChild(session.access_token, data);
+      await fetchChildren();
+    } catch (error) {
+      console.error('Failed to create child:', error);
+      throw error;
+    }
+  };
+
+  const handleUpdateChild = async (data: UpdateChild) => {
+    if (!session?.access_token || !editingChild) return;
+    
+    try {
+      await apiClient.updateChild(session.access_token, editingChild.id, data);
+      await fetchChildren();
+    } catch (error) {
+      console.error('Failed to update child:', error);
+      throw error;
+    }
+  };
+
+  const handleDeleteChild = async (childId: string) => {
+    if (!session?.access_token) return;
+    
+    try {
+      await apiClient.deleteChild(session.access_token, childId);
+      await fetchChildren();
+      setDeleteConfirm(null);
+    } catch (error) {
+      console.error('Failed to delete child:', error);
+    }
+  };
+
+  const openCreateDialog = () => {
+    setEditingChild(undefined);
+    setDialogOpen(true);
+  };
+
+  const openEditDialog = (child: Child) => {
+    setEditingChild(child);
+    setDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setDialogOpen(false);
+    setEditingChild(undefined);
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Family Profiles</h1>
+          <p className="text-muted-foreground">
+            Manage your children's learning profiles
+          </p>
+        </div>
+        <Button onClick={openCreateDialog}>
+          Add Child
+        </Button>
+      </div>
+
+      {/* Children Grid */}
+      {children.length === 0 ? (
+        <Card>
+          <CardContent className="flex flex-col items-center justify-center py-12">
+            <div className="text-center space-y-3">
+              <h3 className="text-lg font-medium">No children added yet</h3>
+              <p className="text-muted-foreground max-w-sm">
+                Add your first child profile to start their English learning journey with WonderKids.
+              </p>
+              <Button onClick={openCreateDialog}>
+                Add Your First Child
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {children.map((child) => (
+            <Card key={child.id} className="hover:shadow-md transition-shadow">
+              <CardHeader>
+                <div className="flex items-center space-x-3">
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="text-primary font-medium text-lg">
+                      {child.display_name.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">{child.display_name}</CardTitle>
+                    <CardDescription>
+                      {child.birth_year && `Born ${child.birth_year}`}
+                      {child.locale && ` • ${child.locale === 'en' ? 'English' : 'Vietnamese'}`}
+                    </CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <div className="text-sm text-muted-foreground">
+                    <p>Learning progress: Just started</p>
+                    <p>Current level: Beginner</p>
+                  </div>
+                  
+                  <div className="flex space-x-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => openEditDialog(child)}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setDeleteConfirm(child.id)}
+                      className="text-destructive hover:text-destructive"
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
+
+      {/* Child Dialog */}
+      <ChildDialog
+        child={editingChild}
+        isOpen={dialogOpen}
+        onClose={closeDialog}
+        onSave={editingChild ? handleUpdateChild : handleCreateChild}
+      />
+
+      {/* Delete Confirmation */}
+      {deleteConfirm && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-md">
+            <CardHeader>
+              <CardTitle>Delete Child Profile</CardTitle>
+              <CardDescription>
+                Are you sure you want to delete this child's profile? This action cannot be undone.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex space-x-2">
+                <Button
+                  variant="outline"
+                  className="flex-1"
+                  onClick={() => setDeleteConfirm(null)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  variant="destructive"
+                  className="flex-1"
+                  onClick={() => handleDeleteChild(deleteConfirm)}
+                >
+                  Delete
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+    </div>
+  );
+}

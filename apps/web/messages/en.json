@@ -1,0 +1,109 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success!",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "back": "Back",
+    "next": "Next",
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out"
+  },
+  "navigation": {
+    "home": "Home",
+    "courses": "Courses",
+    "dashboard": "Dashboard",
+    "family": "Family",
+    "pricing": "Pricing",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "auth": {
+    "signInTitle": "Welcome back",
+    "signUpTitle": "Create your account",
+    "email": "Email address",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "signInWithEmail": "Sign in with email",
+    "signUpWithEmail": "Create account",
+    "magicLink": "Send magic link",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "forgotPassword": "Forgot your password?",
+    "checkYourEmail": "Check your email for a sign-in link"
+  },
+  "family": {
+    "title": "Family Profiles",
+    "addChild": "Add Child",
+    "editChild": "Edit Child",
+    "deleteChild": "Delete Child",
+    "childName": "Child's Name",
+    "birthYear": "Birth Year",
+    "locale": "Language",
+    "avatar": "Avatar",
+    "noChildren": "No children added yet",
+    "addFirstChild": "Add your first child to get started"
+  },
+  "course": {
+    "title": "Courses",
+    "units": "Units",
+    "lessons": "Lessons",
+    "startLesson": "Start Lesson",
+    "continueLesson": "Continue",
+    "completed": "Completed",
+    "locked": "Locked",
+    "estimatedTime": "Est. {minutes} min"
+  },
+  "dashboard": {
+    "welcome": "Welcome back, {name}!",
+    "quickActions": "Quick Actions",
+    "recentProgress": "Recent Progress",
+    "minutesLearned": "Minutes Learned This Week",
+    "lessonsCompleted": "Lessons Completed",
+    "streakDays": "Day Streak"
+  },
+  "marketing": {
+    "hero": {
+      "title": "Fun English Learning for Kids",
+      "subtitle": "Interactive lessons, games, and AI tutoring designed for children aged 5-12",
+      "cta": "Get Started Free"
+    },
+    "features": {
+      "title": "Why families love WonderKids",
+      "interactive": {
+        "title": "Interactive Lessons",
+        "description": "Engaging activities that keep kids motivated"
+      },
+      "progress": {
+        "title": "Track Progress",
+        "description": "See exactly what your child is learning"
+      },
+      "safe": {
+        "title": "Safe & Secure",
+        "description": "Child-safe environment with parental controls"
+      }
+    },
+    "pricing": {
+      "title": "Simple, Family-Friendly Pricing",
+      "familyPlan": {
+        "title": "Family Plan",
+        "price": "$19/month",
+        "features": [
+          "Up to 3 children",
+          "All courses included",
+          "Progress tracking",
+          "AI tutor access",
+          "Cancel anytime"
+        ],
+        "cta": "Start Free Trial"
+      }
+    }
+  }
+}
