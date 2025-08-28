@@ -105,5 +105,25 @@
         "cta": "Start Free Trial"
       }
     }
+  },
+  "blog": {
+    "title": "WonderKids Blog",
+    "subtitle": "Tips, guides, and insights for helping your child learn English effectively",
+    "readMore": "Read More",
+    "backToBlog": "Back to Blog",
+    "publishedBy": "Published by",
+    "on": "on",
+    "minRead": "{minutes} min read",
+    "tags": "Tags",
+    "stayUpdated": "Stay Updated",
+    "rssDescription": "Subscribe to our RSS feed to get the latest posts delivered to your feed reader.",
+    "rssFeed": "RSS Feed",
+    "moreArticles": "More Articles",
+    "showingPostsTagged": "Showing posts tagged with",
+    "clearFilter": "Clear filter",
+    "noPostsWithTag": "No posts found with tag \"{tag}\"",
+    "noPostsYet": "No blog posts yet. Check back soon!",
+    "viewAllPosts": "View all posts",
+    "noTagsYet": "No tags yet"
   }
 }

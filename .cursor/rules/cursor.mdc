@@ -1,113 +1,451 @@
 ---
 alwaysApply: true
-description: WonderKids English build rules and conventions for development across web, api, and packages
+description: WonderKids English project index, build rules, and development guidelines
 ---
 
-# WonderKids English – Build Rules
+# WonderKids English – Project Index & Build Rules
+
+**Interactive English Learning Platform for Children (Ages 5-12)**
+
+**Current Status**: Sprint-2 ✅ COMPLETED | Next: Sprint-3 (AI Tutor Integration)
 
 **Applies to:**
 - `apps/web/**`
-- `apps/api/**` 
+- `apps/api/**`
 - `packages/**`
 
-## Goals
-- Ship a playful, accessible English‑learning site with high retention
-- Use latest library versions; **do not** pin versions unless security requires
-- Keep PRs atomic (<300 lines diff when possible). Write tests for core logic
-- Document sprint deliverables and maintain comprehensive API testing
+---
 
-## Style Guide
+## 🚀 **DEVELOPMENT EXCELLENCE**
 
-**Language:** TypeScript  
-**Formatting:** Prettier + ESLint (strict) + import sorting  
-**Tailwind:** Yes  
-**UI:** shadcn/ui components; avoid custom one‑off CSS unless necessary  
-**State:** Keep server state in TanStack Query; UI state in lightweight store (Zustand)  
-**Forms:** react-hook-form + Zod resolver  
-**Accessibility:** Labels, roles, keyboard nav, focus rings, motion‑reduced fallback  
-**i18n:** next-intl; all strings must be keys with English/Vietnamese bundles  
-**Tests:** Vitest/Jest for units, Playwright for critical flows  
-**Performance:** Image optimization, code‑splitting, cache headers, RSC where sensible  
+> **For comprehensive development best practices, see:** [Development Excellence Guide](mdc:development-excellence.mdc)
 
-## Constraints
-- Do not store secrets in repo. Use environment variables
-- Do not introduce server sessions in Next.js; prefer stateless JWT from Supabase
-- Prefer serverless storage links via Supabase signed URLs
-- Keep SQL migrations idempotent; use Supabase migrations if available
+This guide focuses on project-specific information. For general development excellence (feature implementation, bug fixing, code quality), refer to the linked guide above.
 
-## Conventions
+---
 
-### Commit Messages
+## 📋 **PROJECT OVERVIEW**
+
+### **Vision & Mission**
+Create a safe, engaging, and effective English learning platform for children aged 5-12, combining interactive lessons, gamification, AI tutoring, and family involvement.
+
+### **Technology Stack**
+- **Frontend**: Next.js 15 + React 19 + TypeScript + Tailwind CSS
+- **Backend**: NestJS + TypeScript + Swagger/OpenAPI
+- **Database**: Supabase (PostgreSQL) with Row Level Security
+- **Authentication**: Supabase Auth (JWT + Magic Links)
+- **Build**: Turborepo monorepo with shared packages
+- **Storage**: Supabase Storage with signed URLs
+
+### **Development URLs**
+- **Web App**: http://localhost:3000
+- **API Server**: http://localhost:4000
+- **API Docs**: http://localhost:4000/docs
+- **Supabase Dashboard**: https://supabase.com/dashboard
+
+## 🏗️ **MONOREPO ARCHITECTURE**
+
+### **Root Structure**
+```
+wonderkids/
+├── apps/
+│   ├── api/                    # NestJS API server (port 4000)
+│   └── web/                    # Next.js web app (port 3000)
+├── packages/
+│   ├── config/                 # ESLint, Prettier, Tailwind config
+│   ├── types/                  # Shared TypeScript types
+│   ├── ui/                     # shadcn/ui components
+│   └── typescript-config/      # TypeScript configurations
+├── supabase/                   # Database migrations & seed
+├── docs/                       # Project documentation
+├── scripts/                    # Utility scripts
+└── .cursor/rules/              # Cursor AI assistant rules
+```
+
+### **API Modules (NestJS)**
+```
+apps/api/src/modules/
+├── attempts/                   # Lesson attempt tracking & scoring
+├── auth/                       # Authentication guards
+├── children/                   # Child profile management
+├── content/                    # Course/unit/lesson content
+├── lessons/                    # Lesson player API
+└── profiles/                   # User profile management
+```
+
+### **Web App Structure (Next.js)**
+```
+apps/web/
+├── app/
+│   ├── [locale]/               # Internationalized routes
+│   │   ├── (marketing)/        # Public pages (/, /pricing, /blog)
+│   │   ├── (app)/              # Protected app pages
+│   │   │   ├── dashboard/      # User dashboard
+│   │   │   ├── family/         # Child management
+│   │   │   ├── course/[slug]/  # Course content pages
+│   │   │   ├── lesson/[id]/    # Lesson player
+│   │   │   └── review/         # Spaced repetition
+│   │   └── auth/               # Authentication pages
+│   ├── globals.css             # Global styles
+│   ├── layout.tsx              # Root layout
+│   └── page.tsx                # Homepage
+├── components/
+│   ├── app/                    # App-specific components
+│   ├── providers/              # Context providers
+│   └── ui/                     # shadcn/ui components
+├── lib/                        # Utilities and API clients
+├── messages/                   # i18n translations
+└── public/                     # Static assets
+```
+
+## 🎯 **CURRENT IMPLEMENTATION STATUS**
+
+### **✅ COMPLETED FEATURES**
+
+#### **Sprint-1 Deliverables**
+- ✅ Supabase authentication (email/password + magic links)
+- ✅ User profiles and child management
+- ✅ Responsive web app with shadcn/ui
+- ✅ Basic course content structure
+- ✅ Row Level Security (RLS) policies
+- ✅ Internationalization (English/Vietnamese)
+- ✅ API documentation and testing
+
+#### **Sprint-2 Deliverables**
+- ✅ Interactive lesson player with 3 activity types
+- ✅ Gamification system (XP, badges, streaks)
+- ✅ Lesson attempt tracking and scoring
+- ✅ MDX blog system with RSS feed
+- ✅ Drag-and-drop matching activities
+- ✅ Audio playback and media handling
+- ✅ Complete end-to-end lesson flow
+
+### **🧪 IN PROGRESS / NEXT**
+- **Sprint-3**: AI Tutor integration with safety prompts
+- **Sprint-4**: Advanced lesson types (fill-blanks, ordering)
+- **Sprint-5**: Review mode and spaced repetition
+- **Sprint-6**: Enhanced progress tracking
+
+## 📡 **API ENDPOINTS MATRIX**
+
+### **✅ WORKING ENDPOINTS**
+
+#### **Public Endpoints**
+```bash
+GET /api/content/courses              # List published courses
+GET /api/content/courses/:slug        # Get course with content
+GET /api/content/test                 # API health check
+```
+
+#### **Protected Endpoints (Requires Auth)**
+```bash
+# Profile Management
+GET  /api/profiles/me                 # Get user profile
+PATCH /api/profiles/me                # Update user profile
+
+# Child Management
+GET  /api/children                    # Get children for guardian
+POST /api/children                    # Create child profile
+PATCH /api/children/:id               # Update child
+DELETE /api/children/:id              # Delete child
+
+# Lesson System
+GET  /api/lessons/:lessonId           # Get lesson with activities
+POST /api/attempts                    # Start lesson attempt
+POST /api/attempts/:id/answers        # Submit answers
+POST /api/attempts/:id/finish         # Complete attempt
+```
+
+#### **Authentication Headers**
+```bash
+Authorization: Bearer <supabase-jwt-token>
+Content-Type: application/json
+```
+
+## 🌐 **FRONTEND PAGES MATRIX**
+
+### **✅ IMPLEMENTED PAGES**
+
+#### **Marketing Pages**
+- `/` - Homepage with hero and features
+- `/pricing` - Pricing plans and features
+- `/blog` - Blog index with post previews
+- `/blog/[slug]` - Individual blog posts
+- `/rss.xml` - RSS feed for blog posts
+
+#### **Authentication Pages**
+- `/auth/sign-in` - Sign in with email/password
+- `/auth/sign-up` - Sign up with email/password
+- `/test-auth` - Mock authentication for testing
+
+#### **App Pages (Protected)**
+- `/dashboard` - User dashboard with stats
+- `/family` - Child profile management
+- `/course/[slug]` - Course content browser
+- `/lesson/[lessonId]` - Interactive lesson player
+- `/review` - Spaced repetition review
+
+### **🎨 UI COMPONENTS LIBRARY**
+
+#### **Core Components**
+- `Button`, `Input`, `Card` - Basic UI primitives
+- `Dialog`, `Sheet` - Modal and overlay components
+- `Badge`, `Avatar` - Status and user indicators
+- `Progress` - Progress bars and indicators
+
+#### **App-Specific Components**
+- `LessonPlayer` - Main lesson orchestration
+- `ActivityCard` - Dynamic activity renderer
+- `MCQCard` - Multiple choice questions
+- `ListenChooseCard` - Audio-based activities
+- `MatchPairsCard` - Drag-and-drop matching
+- `ChildForm` - Child profile creation/editing
+- `DashboardStats` - Progress and statistics display
+
+---
+
+## 🔧 **DEVELOPMENT WORKFLOW**
+
+### **Environment Setup**
+```bash
+# 1. Install dependencies
+yarn install
+
+# 2. Set up environment variables
+cp .env.example .env.local
+# Edit .env.local with your Supabase credentials
+
+# 3. Start development servers
+yarn dev          # Starts both web (3000) and api (4000)
+yarn dev:web      # Web app only
+yarn dev:api      # API server only
+
+# 4. Seed database (optional)
+yarn seed
+```
+
+### **Available Scripts**
+```bash
+# Development
+yarn dev                    # Start all services
+yarn dev:web               # Start web app only
+yarn dev:api               # Start API server only
+
+# Build & Quality
+yarn build                 # Build all apps
+yarn lint                  # Lint all packages
+yarn typecheck             # TypeScript checking
+yarn format                # Format code with Prettier
+
+# Database
+yarn seed                  # Seed database with test data
+
+# Testing
+yarn test                  # Run unit tests
+yarn test:e2e             # Run end-to-end tests
+```
+
+### **Environment Variables**
+```bash
+# Required for Web App
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+API_URL=http://localhost:4000
+
+# Required for API
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+SUPABASE_URL=your-supabase-url
+SUPABASE_ANON_KEY=your-anon-key
+
+# Optional
+NEXT_PUBLIC_USE_MOCK_AUTH=true  # Enable mock auth for testing
+```
+
+## 🛠️ **DEVELOPMENT BEST PRACTICES**
+
+### **Code Quality Standards**
+- **TypeScript**: Strict mode enabled throughout
+- **ESLint**: Airbnb config with strict rules
+- **Prettier**: Consistent code formatting
+- **Import Sorting**: Automatic import organization
+
+### **Security Practices**
+- **Row Level Security**: All database queries protected
+- **JWT Authentication**: Stateless authentication with Supabase
+- **Input Validation**: Zod schemas for all API inputs
+- **SQL Injection Prevention**: Parameterized queries only
+
+### **Performance Optimization**
+- **Image Optimization**: Next.js automatic image optimization
+- **Code Splitting**: Automatic route-based code splitting
+- **Caching**: TanStack Query for client-side caching
+- **Bundle Analysis**: Regular bundle size monitoring
+
+### **Accessibility Standards**
+- **WCAG 2.1**: AA compliance target
+- **Keyboard Navigation**: Full keyboard accessibility
+- **Screen Reader Support**: ARIA labels and semantic HTML
+- **Focus Management**: Proper focus indicators and management
+- **Motion Preferences**: Respects user's motion preferences
+
+### **Commit Messages**
 Format: `"type(scope): summary"` (feat, fix, chore, refactor, docs, test)
 
-### Folder Structure
-**Web:**
-- `app/(marketing)/`, `app/(app)/dashboard`, `app/(app)/course/[slug]`
-- `components/ui/`, `components/app/`, `lib/`, `hooks/`, `styles/`
-
-**API:**
-- `src/modules/{content,lessons,attempts,progress,gamification,tutor,billing}`
-- `src/common/{guards,dto,filters}`
-
-### Naming Conventions
+### **Naming Conventions**
 - **Components:** PascalCase
-- **Hooks:** useCamelCase  
+- **Hooks:** useCamelCase
 - **Files:** kebab-case
 
-### Environment Variables
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `SUPABASE_SERVICE_ROLE_KEY` (api only)
-- `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` (api)
-- `NEXT_PUBLIC_APP_URL`, `API_URL`
+## 📚 **DEPENDENCIES MATRIX**
 
-## Sprint Documentation
+### **Web App Dependencies**
+```json
+{
+  "next": "^15.5.0",           // React framework
+  "react": "^19.1.0",          // React library
+  "@supabase/supabase-js": "^2.39.0",  // Database & auth
+  "@tanstack/react-query": "^5.17.0",  // Data fetching
+  "zustand": "^4.4.0",         // State management
+  "react-hook-form": "^7.48.0", // Form handling
+  "zod": "^3.22.0",            // Schema validation
+  "@dnd-kit/core": "^6.3.1",   // Drag-and-drop
+  "framer-motion": "^10.18.0", // Animations
+  "next-intl": "^3.5.0",       // Internationalization
+  "lucide-react": "^0.542.0",  // Icons
+  "tailwindcss": "^3.4.0"      // Styling
+}
+```
 
-### Required Documentation
-- **Sprint Completion Report**: `docs/sprints/sprintN-deliverables/SPRINTN-COMPLETION.md`
-- **API Testing Guide**: `docs/sprints/sprintN-deliverables/API-TESTING-GUIDE.md`
-- **Architecture Updates**: Document any major changes to project structure
-- **Known Issues**: Track technical debt and limitations
+### **API Dependencies**
+```json
+{
+  "@nestjs/common": "^10.0.0",      // NestJS framework
+  "@nestjs/platform-express": "^10.0.0", // Express platform
+  "@nestjs/swagger": "^7.0.0",      // API documentation
+  "@supabase/supabase-js": "^2.0.0", // Database client
+  "class-transformer": "^0.5.1",    // Object transformation
+  "class-validator": "^0.14.0",     // Request validation
+  "zod": "^3.22.0"                  // Schema validation
+}
+```
 
-### Documentation Standards
+### **Shared Packages**
+```json
+{
+  "@repo/types": "*",           // Shared TypeScript types
+  "@repo/ui": "*",              // Shared UI components
+  "@repo/config": "*",          // Shared configurations
+  "@repo/typescript-config": "*" // TypeScript configs
+}
+```
+
+## 📋 **SPRINT DOCUMENTATION REQUIREMENTS**
+
+### **Required Documentation per Sprint**
+1. **Sprint Completion Report**: `docs/sprints/sprintN-deliverables/SPRINTN-COMPLETION.md`
+2. **API Testing Guide**: `docs/sprints/sprintN-deliverables/API-TESTING-GUIDE.md`
+3. **UI Test Scenarios**: `docs/sprints/sprintN-deliverables/UI-TEST-SCENARIOS.md`
+4. **UI Testing Final Report**: `docs/sprints/sprintN-deliverables/UI-TESTING-FINAL-REPORT.md`
+
+### **Documentation Standards**
 - Use clear headings and status indicators (✅ ❌ 🧪)
 - Include test results with actual curl commands
 - Document all API endpoints with expected responses
 - Maintain project context for future sprints
 
-## API Testing Requirements
+### **Current Sprint Documentation**
+- Sprint-1: ✅ Complete (Foundation & Auth)
+- Sprint-2: ✅ Complete (Progress & Gamification)
+- Sprint-3: 📋 Ready for development
 
-### Testing Standards
-- **Public Endpoints**: Must be tested and documented with curl examples
-- **Protected Endpoints**: Require authentication flow documentation
-- **Error Cases**: Test 401, 403, 404, 400 responses
-- **RLS Policies**: Verify Row Level Security enforcement
+## 🎮 **LESSON SYSTEM FEATURES**
 
-### Testing Checklist per Sprint
-- [ ] All new endpoints tested with actual requests
-- [ ] Authentication flows verified
-- [ ] Error handling validated
-- [ ] Security policies enforced (RLS)
-- [ ] Response schemas documented
-- [ ] Integration with frontend verified
+### **Activity Types Implemented**
+1. **Multiple Choice Questions (MCQ)**: Single/multiple selection with instant feedback
+2. **Listen-and-Choose**: Audio playback with transcript options
+3. **Match Pairs**: Drag-and-drop matching with visual feedback
 
-### Test Documentation Format
-```bash
-# Test Command
-curl -X METHOD http://localhost:4000/endpoint
+### **Gamification Features**
+- **XP System**: Points awarded for lesson completion and correct answers
+- **Badges**: Achievement system for milestones and consistency
+- **Streaks**: Daily learning streak tracking with rewards
+- **Progress Tracking**: Visual progress indicators and completion percentages
 
-# Expected Response (with status)
-✅ 200: { "data": ..., "success": true }
-❌ 404: { "message": "Not found" }
-🧪 Pending: Requires authentication setup
+### **Lesson Player Capabilities**
+- **State Management**: Zustand for ephemeral lesson state
+- **Progress Persistence**: Automatic saving of answers and progress
+- **Responsive Design**: Works on desktop, tablet, and mobile
+- **Audio Support**: HTML5 audio with play/pause controls
+- **Error Handling**: Graceful degradation and retry mechanisms
+- **Results Display**: Score display with confetti animations
+
+## 🗄️ **DATABASE SCHEMA**
+
+### **Core Tables**
+```sql
+-- User Management
+profiles (id, email, full_name, avatar_url, locale, timezone, created_at)
+children (id, guardian_id, name, avatar_url, birth_date, locale, created_at)
+
+-- Content Structure
+courses (id, title, slug, description, cefr_level, is_published, created_at)
+units (id, course_id, title, description, idx, is_published, created_at)
+lessons (id, unit_id, title, description, duration_minutes, idx, is_published, created_at)
+activities (id, lesson_id, title, type, instructions, idx, created_at)
+questions (id, activity_id, question_text, question_type, idx, created_at)
+options (id, question_id, option_text, is_correct, idx, created_at)
+
+-- Learning Progress
+attempts (id, child_id, lesson_id, started_at, completed_at, score_percentage)
+answers (id, attempt_id, question_id, answer_value, is_correct, created_at)
+progress (id, child_id, lesson_id, status, mastery_level, last_attempt_at)
+xp_events (id, child_id, event_type, xp_amount, description, created_at)
+
+-- Gamification
+badges (id, name, description, icon_url, xp_required, created_at)
+user_badges (id, child_id, badge_id, earned_at)
 ```
 
-## Review Checklist
-- [ ] Types & null safety
-- [ ] RLS respected; no leaking data
-- [ ] Accessibility & keyboard nav
-- [ ] i18n keys added
-- [ ] Tests & stories updated
-- [ ] **Sprint documentation completed**
-- [ ] **All API endpoints tested and documented**
-- [ ] **Security policies verified**
+### **Storage Buckets**
+- `avatars` - User and child profile pictures
+- `audio` - Lesson audio files and recordings
+- `images` - Lesson images and illustrations
+
+## 🚀 **DEPLOYMENT & PRODUCTION**
+
+### **Current Environment**
+- **Development**: Local development setup
+- **Database**: Supabase hosted PostgreSQL
+- **Storage**: Supabase Storage with signed URLs
+- **Authentication**: Supabase Auth service
+
+### **Production Readiness Checklist**
+- [ ] Environment variables configured
+- [ ] Database migrations applied
+- [ ] SSL certificates installed
+- [ ] CDN configured for static assets
+- [ ] Monitoring and logging set up
+- [ ] Backup strategy implemented
+- [ ] Security audit completed
+
+---
+
+## 📞 **RESOURCES & SUPPORT**
+
+### **Key Documentation Files**
+- `docs/PROJECT-OVERVIEW.md` - High-level project overview
+- `docs/PRD.md` - Product requirements document
+- `docs/EPICS_STORIES.md` - User stories and acceptance criteria
+- `docs/sprints/` - Sprint-specific documentation
+- `supabase/README.md` - Database setup and migrations
+
+### **Development Tools**
+- **Cursor AI**: AI-powered code assistant (current tool)
+- **Supabase Dashboard**: Database management and monitoring
+- **Playwright MCP**: UI testing and automation
+- **ESLint/Prettier**: Code quality and formatting
+
+---
+
+**This comprehensive index ensures all team members have complete visibility into the WonderKids English project structure, current implementation status, and development guidelines. Regular updates to this document maintain alignment across the development team.**

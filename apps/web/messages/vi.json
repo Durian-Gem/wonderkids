@@ -105,5 +105,25 @@
         "cta": "Dùng thử miễn phí"
       }
     }
+  },
+  "blog": {
+    "title": "Blog WonderKids",
+    "subtitle": "Mẹo, hướng dẫn và hiểu biết sâu sắc để giúp con bạn học tiếng Anh hiệu quả",
+    "readMore": "Đọc thêm",
+    "backToBlog": "Quay lại Blog",
+    "publishedBy": "Được xuất bản bởi",
+    "on": "vào",
+    "minRead": "{minutes} phút đọc",
+    "tags": "Thẻ",
+    "stayUpdated": "Cập nhật thông tin",
+    "rssDescription": "Đăng ký nguồn cấp RSS của chúng tôi để nhận các bài viết mới nhất được gửi đến trình đọc nguồn cấp của bạn.",
+    "rssFeed": "Nguồn cấp RSS",
+    "moreArticles": "Bài viết khác",
+    "showingPostsTagged": "Hiển thị bài viết được gắn thẻ với",
+    "clearFilter": "Xóa bộ lọc",
+    "noPostsWithTag": "Không tìm thấy bài viết nào với thẻ \"{tag}\"",
+    "noPostsYet": "Chưa có bài viết blog nào. Hãy quay lại sau!",
+    "viewAllPosts": "Xem tất cả bài viết",
+    "noTagsYet": "Chưa có thẻ nào"
   }
 }

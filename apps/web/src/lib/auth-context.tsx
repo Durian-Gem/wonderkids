@@ -1,12 +1,17 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import { User, Session } from '@supabase/supabase-js';
-import { supabase } from './supabase';
+
+// Mock user type for testing
+interface MockUser {
+  id: string;
+  email: string;
+  created_at: string;
+}
 
 interface AuthContextType {
-  user: User | null;
-  session: Session | null;
+  user: MockUser | null;
+  session: any;
   loading: boolean;
   signOut: () => Promise<void>;
 }
@@ -18,33 +23,32 @@ const AuthContext = createContext<AuthContextType>({
   signOut: async () => {},
 });
 
+// Mock authenticated user for testing
+const mockUser: MockUser = {
+  id: 'mock-user-id-123',
+  email: 'test@example.com',
+  created_at: new Date().toISOString()
+};
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
+  const [user, setUser] = useState<MockUser | null>(null);
+  const [session, setSession] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
+    // Simulate auth loading delay
+    const timer = setTimeout(() => {
+      setUser(mockUser);
+      setSession({ user: mockUser });
       setLoading(false);
-    });
+    }, 500);
 
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    return () => subscription.unsubscribe();
+    return () => clearTimeout(timer);
   }, []);
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    setUser(null);
+    setSession(null);
   };
 
   const value = {

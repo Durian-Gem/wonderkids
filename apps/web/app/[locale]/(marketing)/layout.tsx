@@ -26,6 +26,12 @@ export default function MarketingLayout({
                 Pricing
               </a>
               <a
+                href="/blog"
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Blog
+              </a>
+              <a
                 href="#features"
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
@@ -67,6 +73,7 @@ export default function MarketingLayout({
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><a href="#" className="hover:text-primary transition-colors">Features</a></li>
                 <li><a href="/pricing" className="hover:text-primary transition-colors">Pricing</a></li>
+                <li><a href="/blog" className="hover:text-primary transition-colors">Blog</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Safety</a></li>
               </ul>
             </div>

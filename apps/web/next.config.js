@@ -1,10 +1,18 @@
-import createNextIntlPlugin from 'next-intl/plugin';
+import createMDX from '@next/mdx';
 
-const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    // Plugins will be configured separately to avoid serialization issues
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typedRoutes: true,
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   images: {
     domains: ['your-supabase-project.supabase.co'],
     formats: ['image/avif', 'image/webp'],
@@ -15,4 +23,4 @@ const nextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+export default withMDX(nextConfig);
