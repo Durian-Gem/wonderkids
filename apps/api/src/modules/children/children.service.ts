@@ -6,7 +6,7 @@ import { UpdateChildDto } from './dto/update-child.dto';
 @Injectable()
 export class ChildrenService {
   private supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
 

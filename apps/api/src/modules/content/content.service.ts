@@ -1,10 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { createClient } from '@supabase/supabase-js';
 
 @Injectable()
 export class ContentService {
   private supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
 
@@ -29,7 +29,7 @@ export class ContentService {
     }
   }
 
-  async getCourseBySlug(slug: string) {
+  async getCourseBySlug(slug: string, userId?: string, forcePremium: boolean = false) {
     // Get course with units and lessons
     const { data: course, error: courseError } = await this.supabase
       .from('courses')
@@ -48,6 +48,30 @@ export class ContentService {
       throw new NotFoundException(`Course with slug "${slug}" not found`);
     }
 
+    // Check if course is premium and user access
+    if (course.is_premium) {
+      if (!userId) {
+        // For premium courses, return limited info when not authenticated
+        return {
+          data: {
+            ...course,
+            units: [],
+            description: course.description,
+            isPremium: true,
+            requiresSubscription: true,
+          },
+          success: true,
+        };
+      }
+
+      // Check if user has active subscription
+      const hasActiveSubscription = await this.checkUserSubscription(userId);
+      
+      if (!hasActiveSubscription && !forcePremium) {
+        throw new ForbiddenException('Premium subscription required to access this course');
+      }
+    }
+
     // Filter only published units and lessons
     const publishedUnits = course.units
       ?.filter(unit => unit.is_published)
@@ -61,9 +85,27 @@ export class ContentService {
 
     const result = {
       ...course,
-      units: publishedUnits
+      units: publishedUnits,
+      isPremium: course.is_premium,
     };
 
     return { data: result, success: true };
+  }
+
+  private async checkUserSubscription(userId: string): Promise<boolean> {
+    try {
+      const { data: hasActiveSubscription, error } = await this.supabase
+        .rpc('has_active_subscription', { user_uuid: userId });
+
+      if (error) {
+        console.error('Error checking subscription:', error);
+        return false;
+      }
+
+      return hasActiveSubscription || false;
+    } catch (error) {
+      console.error('Error checking user subscription:', error);
+      return false;
+    }
   }
 }

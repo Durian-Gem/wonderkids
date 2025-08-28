@@ -1,5 +1,5 @@
 import { getRequestConfig } from 'next-intl/server';
-import { notFound } from 'next/navigation';
+import { notFound } from 'next/navigation.js';
 
 // Can be imported from a shared config
 const locales = ['en', 'vi'] as const;
@@ -12,3 +12,14 @@ export default getRequestConfig(async ({ locale }) => {
     messages: (await import(`../messages/${locale}.json`)).default,
   };
 });
+
+// Export config for the plugin
+export const nextIntlConfig = {
+  locales,
+  defaultLocale: 'en' as const,
+  localeDetection: false,
+  messages: {
+    en: './messages/en.json',
+    vi: './messages/vi.json',
+  },
+};
