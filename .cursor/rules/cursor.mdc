@@ -340,24 +340,40 @@ Format: `"type(scope): summary"` (feat, fix, chore, refactor, docs, test)
 }
 ```
 
-## 📋 **SPRINT DOCUMENTATION REQUIREMENTS**
+## 📋 **SPRINT WORKFLOW & DOCUMENTATION**
 
-### **Required Documentation per Sprint**
-1. **Sprint Completion Report**: `docs/sprints/sprintN-deliverables/SPRINTN-COMPLETION.md`
-2. **API Testing Guide**: `docs/sprints/sprintN-deliverables/API-TESTING-GUIDE.md`
-3. **UI Test Scenarios**: `docs/sprints/sprintN-deliverables/UI-TEST-SCENARIOS.md`
-4. **UI Testing Final Report**: `docs/sprints/sprintN-deliverables/UI-TESTING-FINAL-REPORT.md`
+### **Backend-First Development Approach**
+> **For comprehensive sprint workflow, see:** [Sprint Workflow Guide](mdc:sprint-workflow.mdc)
 
-### **Documentation Standards**
-- Use clear headings and status indicators (✅ ❌ 🧪)
-- Include test results with actual curl commands
-- Document all API endpoints with expected responses
-- Maintain project context for future sprints
+**Phase-Based Development:**
+1. **Phase 1 (Backend)**: API implementation → Testing → Documentation
+2. **Phase 2 (Frontend)**: UI implementation → Testing → Documentation
+3. **Phase 3 (Completion)**: Sprint completion report → Archive
 
-### **Current Sprint Documentation**
-- Sprint-1: ✅ Complete (Foundation & Auth)
-- Sprint-2: ✅ Complete (Progress & Gamification)
-- Sprint-3: 📋 Ready for development
+### **Optimized Documentation Structure**
+```
+docs/sprints/
+├── current-sprint/          # 📁 ACTIVE SPRINT (working documents)
+│   ├── api-testing-plan.md      # Backend testing plan & results
+│   ├── ui-testing-plan.md       # Frontend testing plan & results
+│   └── sprint-completion.md     # Final completion report
+├── archived/                # 📁 COMPLETED SPRINTS (final reports only)
+│   ├── sprint1/sprint1-completion.md
+│   └── sprint2/sprint2-completion.md
+└── templates/               # 📁 REUSABLE TEMPLATES
+    ├── api-testing-plan-template.md
+    ├── ui-testing-plan-template.md
+    └── sprint-completion-template.md
+```
+
+### **Sprint Commands**
+- **Start New Sprint**: `scripts/new-sprint.sh [N] [Theme]`
+- **Archive Sprint**: `scripts/archive-sprint.sh [N]`
+
+### **Current Sprint Status**
+- Sprint-1: ✅ Complete & Archived
+- Sprint-2: ✅ Complete & Archived
+- Sprint-3: 📋 Ready for planning
 
 ## 🎮 **LESSON SYSTEM FEATURES**
 

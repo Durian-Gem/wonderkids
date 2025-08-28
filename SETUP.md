@@ -1,7 +1,7 @@
 # WonderKids Setup Guide
 
 ## Prerequisites
-- Node.js 18+ 
+- Node.js 18+
 - Yarn package manager
 - Supabase account
 
@@ -12,28 +12,68 @@
 yarn install
 ```
 
-### 2. Environment Variables
-⚠️ **SECURITY UPDATE**: Environment variables are now **REQUIRED**. All hardcoded credentials have been removed for security.
+### 2. Environment Variables Setup
+🔐 **SECURITY NOTICE**: All hardcoded credentials have been removed from the codebase for security. You must set up environment variables to run the application.
 
-**📖 See [ENVIRONMENT-SETUP.md](./ENVIRONMENT-SETUP.md) for detailed setup instructions.**
+#### **Required Environment Variables**
 
-Create the following `.env` files:
-
-**For API (`apps/api/.env`):**
+##### **API Application** (`apps/api/.env`)
+Create `apps/api/.env` with:
 ```bash
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url_here
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-API_URL=http://localhost:4000
+# Supabase Configuration (Required)
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key-here
+
+# API Configuration (Optional)
+PORT=4000
+NODE_ENV=development
+```
+
+##### **Web Application** (`apps/web/.env.local`)
+Create `apps/web/.env.local` with:
+```bash
+# Supabase Configuration (Required)
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key-here
+
+# API Configuration (Optional)
+NEXT_PUBLIC_API_URL=http://localhost:4000/api
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-**For Web (`apps/web/.env.local`):**
-```bash
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url_here
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
-NEXT_PUBLIC_API_URL=http://localhost:4000/api
-```
+#### **Getting Your Supabase Credentials**
+
+1. **Go to your Supabase Dashboard**: https://supabase.com/dashboard
+2. **Select your project**
+3. **Go to Settings > API**
+4. **Copy the following values**:
+   - **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`
+   - **anon public** key → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - **service_role** key → `SUPABASE_SERVICE_ROLE_KEY`
+
+#### **Security Requirements**
+
+##### **Environment Files**
+- ✅ `.env` files are in `.gitignore`
+- ✅ No credentials committed to repository
+- ✅ Applications require environment variables
+
+##### **Key Types**
+- **`NEXT_PUBLIC_*`**: Safe for client-side (browser)
+- **`SUPABASE_SERVICE_ROLE_KEY`**: Server-only (API), never expose to client
+
+#### **Environment Variable Priority**
+
+##### **API (NestJS)**
+1. `apps/api/.env` (local environment file)
+2. System environment variables
+3. ❌ No fallbacks (security requirement)
+
+##### **Web (Next.js)**
+1. `apps/web/.env.local` (local environment file)
+2. `apps/web/.env` (shared environment file)
+3. System environment variables
+4. ❌ No fallbacks (security requirement)
 
 ### 3. Database Setup
 The database schema and seed data are already applied via Supabase MCP. The following are already configured:
@@ -43,18 +83,38 @@ The database schema and seed data are already applied via Supabase MCP. The foll
 
 ### 4. Start Development Servers
 
-**Terminal 1 - API Server:**
+#### **With Environment Variables Set**
 ```bash
+# API Server
 yarn dev:api
-```
-The API will run on http://localhost:4000
-Swagger docs available at http://localhost:4000/docs
+# ✅ Starts on http://localhost:4000
 
-**Terminal 2 - Web App:**
-```bash
+# Web Application
 yarn dev:web
+# ✅ Starts on http://localhost:3000
 ```
-The web app will run on http://localhost:3000
+
+#### **Without Environment Variables**
+```bash
+# API Server
+yarn dev:api
+# ❌ Error: supabaseUrl is required
+
+# Web Application
+yarn dev:web
+# ❌ Error: Missing environment variables
+```
+
+#### **Verify Setup**
+```bash
+# Test API
+curl http://localhost:4000/api/content/test
+# Expected: {"message":"API is working","timestamp":"..."}
+
+# Test Web App
+# Open http://localhost:3000 in browser
+# Check console for environment variable errors
+```
 
 ## Available Scripts
 
@@ -174,3 +234,7 @@ For development questions or issues:
 2. Verify environment variables are correctly set
 3. Ensure all dependencies are installed with `yarn install`
 4. Check that both API and web servers are running
+
+---
+
+**🔒 Security Note**: Never commit actual credentials to version control. Use placeholder values in documentation and example files only. All `.env` files are included in `.gitignore` for security.
