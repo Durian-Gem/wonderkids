@@ -1,5 +1,5 @@
 /** @type {import('next-intl').Config} */
-module.exports = {
+export default {
   locales: ['en', 'vi'],
   defaultLocale: 'en',
   localeDetection: false,

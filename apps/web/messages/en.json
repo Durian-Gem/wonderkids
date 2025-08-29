@@ -224,5 +224,214 @@
     "noPostsYet": "No blog posts yet. Check back soon!",
     "viewAllPosts": "View all posts",
     "noTagsYet": "No tags yet"
+  },
+  "tutor": {
+    "title": "AI English Tutor",
+    "subtitle": "Practice English conversation with your AI tutor in a safe, educational environment. Choose a topic and start chatting to improve your language skills.",
+    "chooseTopicTitle": "Choose a Topic to Practice",
+    "chooseTopicSubtitle": "Select a topic you'd like to chat about with your AI tutor",
+    "newChat": "New Chat",
+    "recentChats": "Recent Chats",
+    "safetyTitle": "Safe Learning Environment",
+    "safetyDescription": "Your AI tutor is designed to be safe and educational. Keep conversations focused on the chosen topic. Parents can view all conversation transcripts in their dashboard.",
+    "startFirstConversation": "Start First Conversation",
+    "continueChat": "Continue Chat",
+    "transcript": "Transcript",
+    "conversationTranscript": "Conversation Transcript",
+    "reviewConversation": "Review the conversation between your child and the AI tutor",
+    "exportTranscript": "Export Transcript",
+    "aiTutor": "AI Tutor",
+    "student": "Student",
+    "startConversation": "Start the conversation!",
+    "askQuestion": "Say hello or ask a question about {topic}",
+    "sendMessage": "Send Message",
+    "messagePlaceholder": "Ask something about {topic}...",
+    "wordCount": "{count}/60 words",
+    "guidelines": {
+      "wordLimit": "Keep messages under 60 words for better conversation",
+      "stayOnTopic": "Focus on the topic: {topic}",
+      "beRespectful": "Be respectful and ask questions to learn English"
+    },
+    "errors": {
+      "emptyMessage": "Message cannot be empty",
+      "tooLong": "Message is too long. Please keep it under 60 words.",
+      "tooManyWords": "Please keep your message under 60 words for better conversation.",
+      "sendFailed": "Failed to send message",
+      "sessionFailed": "Failed to create session",
+      "loadFailed": "Failed to load session"
+    },
+    "topics": {
+      "animals": {
+        "title": "Animals",
+        "description": "Learn about pets, farm animals, and wild animals"
+      },
+      "family": {
+        "title": "Family",
+        "description": "Talk about family members and relationships"
+      },
+      "school": {
+        "title": "School",
+        "description": "Discuss school subjects and activities"
+      },
+      "food": {
+        "title": "Food",
+        "description": "Learn about healthy foods and meals"
+      },
+      "weather": {
+        "title": "Weather",
+        "description": "Talk about sunny, rainy, and snowy days"
+      },
+      "hobbies": {
+        "title": "Hobbies",
+        "description": "Share your favorite activities and games"
+      },
+      "numbers": {
+        "title": "Numbers",
+        "description": "Practice counting and simple math"
+      },
+      "colors": {
+        "title": "Colors",
+        "description": "Learn about different colors around us"
+      },
+      "bodyParts": {
+        "title": "Body Parts",
+        "description": "Learn about head, hands, feet and more"
+      },
+      "clothes": {
+        "title": "Clothes",
+        "description": "Talk about what we wear in different weather"
+      }
+    },
+    "history": {
+      "title": "Recent Conversations",
+      "subtitle": "Continue previous conversations or review transcripts",
+      "noConversations": "No conversations yet",
+      "noConversationsDescription": "Start your first AI tutor conversation by selecting a topic",
+      "loadingConversations": "Loading your conversations...",
+      "timeAgo": {
+        "justNow": "Just now",
+        "hoursAgo": "{hours}h ago",
+        "yesterday": "Yesterday"
+      }
+    },
+    "chat": {
+      "messages": "{count} messages",
+      "noMessages": "No conversation messages yet",
+      "startingChat": "Starting Chat...",
+      "chatAbout": "Chat about {topic}",
+      "sending": "Sending...",
+      "allConversationsMonitored": "All conversations are monitored for safety and educational value"
+    }
+  },
+  "pronunciation": {
+    "title": "Pronunciation Practice",
+    "subtitle": "Practice speaking and improve your pronunciation with instant feedback",
+    "practiceQuestion": "Practice Question",
+    "listen": "Listen",
+    "record": "Record",
+    "playback": "Playback",
+    "submit": "Get Score",
+    "tryAgain": "Try Again",
+    "recordAgain": "Record Again",
+    "recording": "Recording...",
+    "recordingReady": "Recording Ready",
+    "tapToStart": "Tap to Start Recording",
+    "instructions": "Hold the microphone button and speak clearly",
+    "submitting": "Submitting...",
+    "expectedText": "Practice saying:",
+    "overallScore": "Overall Score",
+    "accuracy": "Accuracy",
+    "fluency": "Fluency",
+    "progress": "Progress",
+    "attempts": "{count} attempts",
+    "wordsCorrect": "{correct}/{total} words correct",
+    "wordsPerMinute": "{wpm} words/min",
+    "recordedOn": "Recorded on {date} at {time}",
+    "previousAttempts": "Previous Attempts",
+    "attempt": "Attempt {number}",
+    "complete": "Complete",
+    "next": "Next",
+    "previous": "Previous",
+    "tips": {
+      "title": "Recording Tips:",
+      "speakClearly": "Speak clearly and at a normal pace",
+      "quietEnvironment": "Use a quiet environment for best results",
+      "distance": "Hold your device about 6 inches from your mouth",
+      "practice": "Practice the text before recording"
+    },
+    "scores": {
+      "excellent": "Excellent",
+      "great": "Great",
+      "good": "Good", 
+      "fair": "Fair",
+      "keepPracticing": "Keep Practicing"
+    },
+    "encouragement": {
+      "excellent": "🌟 Excellent! Your pronunciation is superb!",
+      "great": "⭐ Great job! You're speaking very clearly!",
+      "good": "👏 Good work! Keep practicing to improve even more!",
+      "fair": "💪 Nice try! Practice makes perfect!",
+      "needsPractice": "🚀 Keep going! Every attempt makes you better!"
+    },
+    "improvement": {
+      "significant": "🎉 Great improvement! +{improvement}",
+      "small": "👍 Keep it up! +{improvement}",
+      "decline": "💪 Keep practicing! You've got this!",
+      "consistent": "📊 Consistent performance"
+    },
+    "errors": {
+      "noMicrophone": "Failed to start recording. Please check microphone permissions.",
+      "uploadFailed": "Failed to upload audio",
+      "submitFailed": "Failed to submit recording",
+      "loadFailed": "Failed to load lesson",
+      "noActivities": "No pronunciation practice activities available for this lesson."
+    }
+  },
+  "pwa": {
+    "install": {
+      "title": "Install WonderKids",
+      "description": "Install our app for a better learning experience with offline access",
+      "button": "Install App",
+      "installing": "Installing...",
+      "benefits": {
+        "offline": "Offline lessons",
+        "faster": "Faster loading", 
+        "homeScreen": "Home screen access",
+        "notifications": "Push notifications"
+      },
+      "info": "Free to install • Works offline • No app store required"
+    },
+    "offline": {
+      "title": "Offline Content",
+      "subtitle": "Download lesson packs for offline learning",
+      "storageUsed": "Storage used: {size}",
+      "refresh": "Refresh",
+      "download": "Download",
+      "downloading": "Downloading...",
+      "remove": "Remove",
+      "downloaded": "Downloaded",
+      "noPacksAvailable": "No Content Packs Available",
+      "noPacksDescription": "Check back later for offline learning packs",
+      "assets": "Assets:",
+      "size": "Size:",
+      "downloadedOn": "Downloaded:",
+      "files": "{count} files",
+      "storageUsage": "Storage Usage",
+      "noDownloads": "No packs downloaded yet",
+      "youreOffline": "You're offline",
+      "offlineAccess": "You can still access downloaded content packs"
+    },
+    "status": {
+      "online": "Online",
+      "offline": "Offline"
+    },
+    "errors": {
+      "installNotAvailable": "PWA install prompt not available",
+      "installFailed": "PWA install failed",
+      "downloadFailed": "Failed to download pack",
+      "removeFailed": "Failed to remove pack",
+      "loadFailed": "Failed to load content packs",
+      "downloadInProgress": "Another download is in progress"
+    }
   }
 }

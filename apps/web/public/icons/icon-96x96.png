@@ -1,0 +1,7 @@
+<!-- Placeholder for 96x96 PWA icon -->
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+      <rect width="100%" height="100%" fill="#3b82f6"/>
+      <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">WK</text>
+    </svg>
+  

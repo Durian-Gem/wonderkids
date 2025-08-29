@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PWA Icon Generator</title>
+</head>
+<body>
+    <h1>WonderKids PWA Icons Generator</h1>
+    <p>This is a placeholder for PWA icon generation. In production, use proper brand icons.</p>
+    
+    <script>
+        // Generate simple SVG icons for PWA
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        
+        sizes.forEach(size => {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Draw a simple blue circle with "WK" text
+            ctx.fillStyle = '#3b82f6';
+            ctx.fillRect(0, 0, size, size);
+            
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size/3}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('WK', size/2, size/2);
+            
+            // Convert to blob and create download link
+            canvas.toBlob(blob => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `icon-${size}x${size}.png`;
+                a.textContent = `Download ${size}x${size} icon`;
+                a.style.display = 'block';
+                a.style.margin = '5px 0';
+                document.body.appendChild(a);
+            });
+        });
+    </script>
+</body>
+</html>

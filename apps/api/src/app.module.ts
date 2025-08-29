@@ -9,6 +9,10 @@ import { AttemptsModule } from './modules/attempts/attempts.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { ReviewModule } from './modules/review/review.module';
 import { BillingModule } from './modules/billing/billing.module';
+import { TutorModule } from './modules/tutor/tutor.module';
+import { PronunciationModule } from './modules/pronunciation/pronunciation.module';
+import { PWAModule } from './modules/pwa/pwa.module';
+import { EmailModule } from './modules/email/email.module';
 
 @Module({
   imports: [
@@ -25,6 +29,10 @@ import { BillingModule } from './modules/billing/billing.module';
     DashboardModule,
     ReviewModule,
     BillingModule,
+    TutorModule,
+    PronunciationModule,
+    PWAModule,
+    EmailModule,
   ],
 })
 export class AppModule {}

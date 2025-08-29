@@ -224,5 +224,214 @@
     "faq5Answer": "Có, bạn có thể hủy gói đăng ký bất cứ lúc nào. Không có cam kết dài hạn hoặc phí hủy. Quyền truy cập của bạn sẽ tiếp tục cho đến hết kỳ thanh toán hiện tại.",
     "readyToStart": "Sẵn sàng bắt đầu?",
     "joinThousands": "Tham gia cùng hàng nghìn gia đình tin tưởng WonderKids cho việc giáo dục tiếng Anh của con em họ."
+  },
+  "tutor": {
+    "title": "Gia Sư AI Tiếng Anh",
+    "subtitle": "Luyện tập hội thoại tiếng Anh với gia sư AI trong môi trường an toàn, giáo dục. Chọn chủ đề và bắt đầu trò chuyện để cải thiện kỹ năng ngôn ngữ.",
+    "chooseTopicTitle": "Chọn Chủ Đề Để Luyện Tập",
+    "chooseTopicSubtitle": "Chọn chủ đề bạn muốn trò chuyện với gia sư AI",
+    "newChat": "Cuộc Trò Chuyện Mới",
+    "recentChats": "Cuộc Trò Chuyện Gần Đây",
+    "safetyTitle": "Môi Trường Học Tập An Toàn",
+    "safetyDescription": "Gia sư AI của bạn được thiết kế an toàn và giáo dục. Giữ cuộc trò chuyện tập trung vào chủ đề đã chọn. Phụ huynh có thể xem tất cả bản ghi cuộc trò chuyện trong bảng điều khiển.",
+    "startFirstConversation": "Bắt Đầu Cuộc Trò Chuyện Đầu Tiên",
+    "continueChat": "Tiếp Tục Trò Chuyện",
+    "transcript": "Bản Ghi",
+    "conversationTranscript": "Bản Ghi Cuộc Trò Chuyện",
+    "reviewConversation": "Xem lại cuộc trò chuyện giữa con bạn và gia sư AI",
+    "exportTranscript": "Xuất Bản Ghi",
+    "aiTutor": "Gia Sư AI",
+    "student": "Học Sinh",
+    "startConversation": "Bắt đầu cuộc trò chuyện!",
+    "askQuestion": "Chào hỏi hoặc đặt câu hỏi về {topic}",
+    "sendMessage": "Gửi Tin Nhắn",
+    "messagePlaceholder": "Hỏi điều gì đó về {topic}...",
+    "wordCount": "{count}/60 từ",
+    "guidelines": {
+      "wordLimit": "Giữ tin nhắn dưới 60 từ để cuộc trò chuyện tốt hơn",
+      "stayOnTopic": "Tập trung vào chủ đề: {topic}",
+      "beRespectful": "Lịch sự và đặt câu hỏi để học tiếng Anh"
+    },
+    "errors": {
+      "emptyMessage": "Tin nhắn không thể để trống",
+      "tooLong": "Tin nhắn quá dài. Vui lòng giữ dưới 60 từ.",
+      "tooManyWords": "Vui lòng giữ tin nhắn dưới 60 từ để cuộc trò chuyện tốt hơn.",
+      "sendFailed": "Gửi tin nhắn thất bại",
+      "sessionFailed": "Tạo phiên thất bại",
+      "loadFailed": "Tải phiên thất bại"
+    },
+    "topics": {
+      "animals": {
+        "title": "Động Vật",
+        "description": "Học về thú cưng, động vật trang trại và động vật hoang dã"
+      },
+      "family": {
+        "title": "Gia Đình",
+        "description": "Nói về các thành viên gia đình và mối quan hệ"
+      },
+      "school": {
+        "title": "Trường Học",
+        "description": "Thảo luận về các môn học và hoạt động ở trường"
+      },
+      "food": {
+        "title": "Thức Ăn",
+        "description": "Học về thực phẩm lành mạnh và bữa ăn"
+      },
+      "weather": {
+        "title": "Thời Tiết",
+        "description": "Nói về những ngày nắng, mưa và tuyết"
+      },
+      "hobbies": {
+        "title": "Sở Thích",
+        "description": "Chia sẻ các hoạt động và trò chơi yêu thích"
+      },
+      "numbers": {
+        "title": "Số",
+        "description": "Luyện tập đếm và toán học đơn giản"
+      },
+      "colors": {
+        "title": "Màu Sắc",
+        "description": "Học về các màu sắc khác nhau xung quanh chúng ta"
+      },
+      "bodyParts": {
+        "title": "Bộ Phận Cơ Thể",
+        "description": "Học về đầu, tay, chân và nhiều hơn nữa"
+      },
+      "clothes": {
+        "title": "Quần Áo",
+        "description": "Nói về những gì chúng ta mặc trong thời tiết khác nhau"
+      }
+    },
+    "history": {
+      "title": "Cuộc Trò Chuyện Gần Đây",
+      "subtitle": "Tiếp tục cuộc trò chuyện trước đó hoặc xem lại bản ghi",
+      "noConversations": "Chưa có cuộc trò chuyện nào",
+      "noConversationsDescription": "Bắt đầu cuộc trò chuyện gia sư AI đầu tiên bằng cách chọn một chủ đề",
+      "loadingConversations": "Đang tải cuộc trò chuyện của bạn...",
+      "timeAgo": {
+        "justNow": "Vừa xong",
+        "hoursAgo": "{hours} giờ trước",
+        "yesterday": "Hôm qua"
+      }
+    },
+    "chat": {
+      "messages": "{count} tin nhắn",
+      "noMessages": "Chưa có tin nhắn cuộc trò chuyện nào",
+      "startingChat": "Bắt Đầu Trò Chuyện...",
+      "chatAbout": "Trò chuyện về {topic}",
+      "sending": "Đang gửi...",
+      "allConversationsMonitored": "Tất cả cuộc trò chuyện được giám sát để đảm bảo an toàn và giá trị giáo dục"
+    }
+  },
+  "pronunciation": {
+    "title": "Luyện Tập Phát Âm",
+    "subtitle": "Luyện tập nói và cải thiện phát âm với phản hồi tức thì",
+    "practiceQuestion": "Câu Hỏi Luyện Tập",
+    "listen": "Nghe",
+    "record": "Ghi Âm",
+    "playback": "Phát Lại",
+    "submit": "Xem Điểm",
+    "tryAgain": "Thử Lại",
+    "recordAgain": "Ghi Âm Lại",
+    "recording": "Đang ghi âm...",
+    "recordingReady": "Sẵn Sàng Ghi Âm",
+    "tapToStart": "Chạm Để Bắt Đầu Ghi Âm",
+    "instructions": "Giữ nút micro và nói rõ ràng",
+    "submitting": "Đang gửi...",
+    "expectedText": "Luyện tập nói:",
+    "overallScore": "Điểm Tổng Thể",
+    "accuracy": "Độ Chính Xác",
+    "fluency": "Độ Trôi Chảy",
+    "progress": "Tiến Độ",
+    "attempts": "{count} lần thử",
+    "wordsCorrect": "{correct}/{total} từ đúng",
+    "wordsPerMinute": "{wpm} từ/phút",
+    "recordedOn": "Ghi âm vào {date} lúc {time}",
+    "previousAttempts": "Lần Thử Trước Đó",
+    "attempt": "Lần thử {number}",
+    "complete": "Hoàn Thành",
+    "next": "Tiếp Theo",
+    "previous": "Trước Đó",
+    "tips": {
+      "title": "Mẹo Ghi Âm:",
+      "speakClearly": "Nói rõ ràng và với tốc độ bình thường",
+      "quietEnvironment": "Sử dụng môi trường yên tĩnh để có kết quả tốt nhất",
+      "distance": "Giữ thiết bị cách miệng khoảng 15cm",
+      "practice": "Luyện tập văn bản trước khi ghi âm"
+    },
+    "scores": {
+      "excellent": "Xuất Sắc",
+      "great": "Tuyệt Vời",
+      "good": "Tốt",
+      "fair": "Khá",
+      "keepPracticing": "Tiếp Tục Luyện Tập"
+    },
+    "encouragement": {
+      "excellent": "🌟 Xuất sắc! Phát âm của bạn rất tuyệt vời!",
+      "great": "⭐ Làm tốt lắm! Bạn nói rất rõ ràng!",
+      "good": "👏 Làm tốt! Tiếp tục luyện tập để cải thiện hơn nữa!",
+      "fair": "💪 Thử tốt! Luyện tập sẽ tạo nên sự hoàn hảo!",
+      "needsPractice": "🚀 Tiếp tục! Mỗi lần thử đều giúp bạn tiến bộ!"
+    },
+    "improvement": {
+      "significant": "🎉 Cải thiện tuyệt vời! +{improvement}",
+      "small": "👍 Tiếp tục phát huy! +{improvement}",
+      "decline": "💪 Tiếp tục luyện tập! Bạn làm được!",
+      "consistent": "📊 Hiệu suất ổn định"
+    },
+    "errors": {
+      "noMicrophone": "Không thể bắt đầu ghi âm. Vui lòng kiểm tra quyền truy cập micro.",
+      "uploadFailed": "Tải lên âm thanh thất bại",
+      "submitFailed": "Gửi bản ghi âm thất bại",
+      "loadFailed": "Tải bài học thất bại",
+      "noActivities": "Không có hoạt động luyện tập phát âm cho bài học này."
+    }
+  },
+  "pwa": {
+    "install": {
+      "title": "Cài Đặt WonderKids",
+      "description": "Cài đặt ứng dụng để có trải nghiệm học tập tốt hơn với khả năng học offline",
+      "button": "Cài Đặt Ứng Dụng",
+      "installing": "Đang cài đặt...",
+      "benefits": {
+        "offline": "Bài học offline",
+        "faster": "Tải nhanh hơn",
+        "homeScreen": "Truy cập từ màn hình chính",
+        "notifications": "Thông báo đẩy"
+      },
+      "info": "Miễn phí cài đặt • Hoạt động offline • Không cần app store"
+    },
+    "offline": {
+      "title": "Nội Dung Offline",
+      "subtitle": "Tải xuống gói bài học để học offline",
+      "storageUsed": "Dung lượng đã sử dụng: {size}",
+      "refresh": "Làm Mới",
+      "download": "Tải Xuống",
+      "downloading": "Đang tải...",
+      "remove": "Xóa",
+      "downloaded": "Đã Tải",
+      "noPacksAvailable": "Không Có Gói Nội Dung",
+      "noPacksDescription": "Hãy quay lại sau để có gói học offline",
+      "assets": "Tài nguyên:",
+      "size": "Dung lượng:",
+      "downloadedOn": "Đã tải:",
+      "files": "{count} tệp",
+      "storageUsage": "Sử Dụng Dung Lượng",
+      "noDownloads": "Chưa tải gói nào",
+      "youreOffline": "Bạn đang offline",
+      "offlineAccess": "Bạn vẫn có thể truy cập nội dung đã tải xuống"
+    },
+    "status": {
+      "online": "Trực Tuyến",
+      "offline": "Ngoại Tuyến"
+    },
+    "errors": {
+      "installNotAvailable": "Không có lời nhắc cài đặt PWA",
+      "installFailed": "Cài đặt PWA thất bại",
+      "downloadFailed": "Tải gói thất bại",
+      "removeFailed": "Xóa gói thất bại",
+      "loadFailed": "Tải gói nội dung thất bại",
+      "downloadInProgress": "Đang có quá trình tải khác"
+    }
   }
 }
